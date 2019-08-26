@@ -44,6 +44,14 @@ namespace UnitTests
             _model.Received(1).FileName = fileName;
         }
 
+        [Test]
+        public void LoadFileRequestPassedToModel()
+        {
+            CreatePresenter();
+            _view.LoadFile += Raise.EventWith(_view, EventArgs.Empty);
+            _model.Received(1).LoadFile();
+        }
+
         [TestCase(true)]
         [TestCase(false)]
         public void IsValidPassedToViewTest(bool isValid)

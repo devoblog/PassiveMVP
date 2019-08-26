@@ -23,6 +23,7 @@ namespace MVP.Presenters
             base.HookViewEvents();
 
             _view.FileNameChanged += ViewOnFileNameChanged;
+            _view.LoadFile += ViewOnLoadFile;
         }
 
         protected override void UnhookViewEvents()
@@ -30,6 +31,7 @@ namespace MVP.Presenters
             base.UnhookViewEvents();
 
             _view.FileNameChanged -= ViewOnFileNameChanged;
+            _view.LoadFile -= ViewOnLoadFile;
         }
 
         protected override void HookModelEvents()
@@ -49,6 +51,11 @@ namespace MVP.Presenters
         private void ViewOnFileNameChanged(object sender, EventArgs e)
         {
             _model.FileName = _view.FileName;
+        }
+
+        private void ViewOnLoadFile(object sender, EventArgs e)
+        {
+            _model.LoadFile();
         }
 
         private void ModelOnValidated(object sender, EventArgs e)
