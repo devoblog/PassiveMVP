@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MVP.Views
 {
     public interface IFileLoadView
     {
+        event EventHandler FileNameChanged;
+
+        string FileName { get; set; }
+        bool IsValid { set; }
     }
 }
