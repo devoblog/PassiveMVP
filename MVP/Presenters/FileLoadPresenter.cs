@@ -11,6 +11,13 @@ namespace MVP.Presenters
         {
         }
 
+        protected override void SetInitialState()
+        {
+            base.SetInitialState();
+
+            ModelOnValidated(this, EventArgs.Empty);
+        }
+
         protected override void HookViewEvents()
         {
             base.HookViewEvents();

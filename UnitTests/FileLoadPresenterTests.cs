@@ -27,6 +27,14 @@ namespace UnitTests
         }
 
         [Test]
+        public void InitialIsValidPassedToModel()
+        {
+            _model.IsValid.Returns(false);
+            CreatePresenter();
+            _view.Received(1).IsValid = false;
+        }
+
+        [Test]
         public void FileNamePassedToModelTest()
         {
             string fileName= "MyFile.txt";
@@ -42,6 +50,7 @@ namespace UnitTests
         {
             _model.IsValid.Returns(isValid);
             CreatePresenter();
+            _view.ClearReceivedCalls();
             _model.Validated += Raise.EventWith(_model, EventArgs.Empty);
             _view.Received(1).IsValid = isValid;
         }
