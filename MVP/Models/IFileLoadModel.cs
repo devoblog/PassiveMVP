@@ -8,5 +8,7 @@ namespace MVP.Models
 
         bool IsValid { get; }
         string FileName { get; set; }
+
+        void LoadFile();
     }
 }

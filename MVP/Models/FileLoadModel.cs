@@ -42,6 +42,11 @@ namespace MVP.Models
             }
         }
 
+        public void LoadFile()
+        {
+            
+        }
+
         private void Validate()
         {
             IsValid = _fileSystemWrapper.FileExists(_fileName);
