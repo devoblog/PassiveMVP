@@ -30,6 +30,7 @@
         {
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.loadButton = new System.Windows.Forms.Button();
+            this.textBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // fileNameTextBox
@@ -53,11 +54,23 @@
             this.loadButton.UseVisualStyleBackColor = true;
             this.loadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
+            // textBox
+            // 
+            this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox.Location = new System.Drawing.Point(12, 38);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(644, 481);
+            this.textBox.TabIndex = 2;
+            this.textBox.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 531);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.fileNameTextBox);
             this.Name = "MainForm";
@@ -72,6 +85,7 @@
 
         private System.Windows.Forms.TextBox fileNameTextBox;
         private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.RichTextBox textBox;
     }
 }
 

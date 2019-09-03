@@ -6,19 +6,21 @@ namespace MVP.Models
 {
     public class FileLoadModel : IFileLoadModel
     {
+        private readonly ITextEditorModel _textEditorModel;
         private readonly IFileSystemWrapper _fileSystemWrapper;
         public event EventHandler Validated;
 
         private bool _isValid;
         private string _fileName;
 
-        public FileLoadModel()
-            : this(new FileSystemWrapper())
+        public FileLoadModel(ITextEditorModel textEditorModel)
+            : this(textEditorModel, new FileSystemWrapper())
         {
         }
 
-        internal FileLoadModel(IFileSystemWrapper fileSystemWrapper)
+        internal FileLoadModel(ITextEditorModel textEditorModel, IFileSystemWrapper fileSystemWrapper)
         {
+            _textEditorModel = textEditorModel;
             _fileSystemWrapper = fileSystemWrapper;
         }
 
@@ -44,7 +46,7 @@ namespace MVP.Models
 
         public void LoadFile()
         {
-            
+            _textEditorModel.Text = _fileSystemWrapper.ReadTextFile(_fileName);
         }
 
         private void Validate()

@@ -2,6 +2,6 @@
 {
     public interface ITextEditorView
     {
-        string[] Lines { get; set; }
+        string FileText { get; set; }
     }
 }

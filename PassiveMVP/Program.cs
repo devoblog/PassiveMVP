@@ -17,8 +17,10 @@ namespace PassiveMVP
             Application.SetCompatibleTextRenderingDefault(false);
 
             MainForm mainForm = new MainForm();
-            IFileLoadModel fileLoadModel = new FileLoadModel();
+            ITextEditorModel textEditorModel = new TextEditorModel();
+            IFileLoadModel fileLoadModel = new FileLoadModel(textEditorModel);
             new FileLoadPresenter(mainForm, fileLoadModel);
+            new TextEditorPresenter(mainForm, textEditorModel);
 
             Application.Run(mainForm);
         }

@@ -8,5 +8,10 @@ namespace MVP.Models
         {
             return File.Exists(fileName);
         }
+
+        public string ReadTextFile(string fileName)
+        {
+            return File.ReadAllText(fileName);
+        }
     }
 }
