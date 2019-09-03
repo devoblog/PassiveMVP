@@ -12,7 +12,6 @@ namespace UnitTests
     {
         private IFileLoadView _view;
         private IFileLoadModel _model;
-        private FileLoadPresenter _presenter;
 
         [SetUp]
         public void SetUp()
@@ -23,7 +22,7 @@ namespace UnitTests
 
         private void CreatePresenter()
         {
-            _presenter = new FileLoadPresenter(_view, _model);
+            new FileLoadPresenter(_view, _model);
         }
 
         [Test]
@@ -37,7 +36,7 @@ namespace UnitTests
         [Test]
         public void FileNamePassedToModelTest()
         {
-            string fileName= "MyFile.txt";
+            string fileName = "MyFile.txt";
             _view.FileName.Returns(fileName);
             CreatePresenter();
             _view.FileNameChanged += Raise.EventWith(_view, EventArgs.Empty);
