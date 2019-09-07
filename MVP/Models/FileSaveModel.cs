@@ -9,7 +9,6 @@
         public FileSaveModel(ITextEditorModel textEditorModel, IFilePathModel filePathModel)
             : this(textEditorModel, filePathModel, new FileSystemWrapper())
         {
-
         }
 
         internal FileSaveModel(ITextEditorModel textEditorModel, IFilePathModel filePathModel,

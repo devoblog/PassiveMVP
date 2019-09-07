@@ -29,5 +29,14 @@ namespace UnitTests
             _filePathModel.FileNameChanged += Raise.EventWith(_filePathModel, EventArgs.Empty);
             Assert.AreEqual(fileExists, model.IsValid);
         }
+
+        [Test]
+        public void LoadTest()
+        {
+            _fileSystemWrapper.ReadTextFile(Arg.Any<string>()).Returns("MyText");
+            IFileLoadModel model = new FileLoadModel(_textEditorModel, _filePathModel, _fileSystemWrapper);
+            model.LoadFile();
+            _textEditorModel.Received(1).Text = "MyText";
+        }
     }
 }
