@@ -33,15 +33,6 @@ namespace UnitTests
             _view.Received(1).IsValid = false;
         }
 
-        [Test]
-        public void FileNamePassedToModelTest()
-        {
-            string fileName = "MyFile.txt";
-            _view.FileName.Returns(fileName);
-            CreatePresenter();
-            _view.FileNameChanged += Raise.EventWith(_view, EventArgs.Empty);
-            _model.Received(1).FileName = fileName;
-        }
 
         [Test]
         public void LoadFileRequestPassedToModel()

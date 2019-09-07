@@ -31,6 +31,7 @@
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.loadButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.RichTextBox();
+            this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // fileNameTextBox
@@ -61,15 +62,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(12, 38);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(644, 481);
+            this.textBox.Size = new System.Drawing.Size(644, 452);
             this.textBox.TabIndex = 2;
             this.textBox.Text = "";
+            this.textBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(581, 496);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 3;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 531);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.fileNameTextBox);
@@ -86,6 +100,7 @@
         private System.Windows.Forms.TextBox fileNameTextBox;
         private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.RichTextBox textBox;
+        private System.Windows.Forms.Button saveButton;
     }
 }
 

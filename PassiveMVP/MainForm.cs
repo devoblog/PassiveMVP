@@ -5,10 +5,12 @@ using MVP.Views;
 
 namespace PassiveMVP
 {
-    public partial class MainForm : Form, IFileLoadView, ITextEditorView
+    public partial class MainForm : Form, IFileLoadView, ITextEditorView, IFileSaveView, IFilePathView
     {
         public event EventHandler FileNameChanged;
         public event EventHandler LoadFile;
+
+        public event EventHandler SaveFile;
 
         public MainForm()
         {
@@ -40,10 +42,22 @@ namespace PassiveMVP
             LoadFile?.Invoke(this, EventArgs.Empty);
         }
 
+        public event EventHandler FileTextChanged;
+
         public string FileText
         {
             get => textBox.Text;
             set => textBox.Text = value;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveFile?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            FileTextChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

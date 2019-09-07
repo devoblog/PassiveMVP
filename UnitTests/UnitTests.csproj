@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="FileLoadModelTests.cs" />
     <Compile Include="FileLoadPresenterTests.cs" />
+    <Compile Include="FilePathModelTests.cs" />
+    <Compile Include="FilePathPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

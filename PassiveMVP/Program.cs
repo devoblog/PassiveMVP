@@ -15,12 +15,18 @@ namespace PassiveMVP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
+            ITextEditorModel textEditorModel = new TextEditorModel();
+            IFilePathModel filePathModel = new FilePathModel();
+            IFileLoadModel fileLoadModel = new FileLoadModel(textEditorModel, filePathModel);
+            IFileSaveModel fileSaveModel = new FileSaveModel(textEditorModel, filePathModel);
 
             MainForm mainForm = new MainForm();
-            ITextEditorModel textEditorModel = new TextEditorModel();
-            IFileLoadModel fileLoadModel = new FileLoadModel(textEditorModel);
+
             new FileLoadPresenter(mainForm, fileLoadModel);
             new TextEditorPresenter(mainForm, textEditorModel);
+            new FileSavePresenter(mainForm, fileSaveModel);
+            new FilePathPresenter(mainForm, filePathModel);
 
             Application.Run(mainForm);
         }

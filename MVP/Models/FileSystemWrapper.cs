@@ -13,5 +13,10 @@ namespace MVP.Models
         {
             return File.ReadAllText(fileName);
         }
+
+        public void SaveFile(string fileName, string text)
+        {
+            File.WriteAllText(fileName, text);
+        }
     }
 }

@@ -7,21 +7,25 @@ namespace MVP.Models
     public class FileLoadModel : IFileLoadModel
     {
         private readonly ITextEditorModel _textEditorModel;
+        private readonly IFilePathModel _filePathModel;
         private readonly IFileSystemWrapper _fileSystemWrapper;
         public event EventHandler Validated;
 
         private bool _isValid;
-        private string _fileName;
 
-        public FileLoadModel(ITextEditorModel textEditorModel)
-            : this(textEditorModel, new FileSystemWrapper())
+        public FileLoadModel(ITextEditorModel textEditorModel, IFilePathModel filePathModel)
+            : this(textEditorModel, filePathModel, new FileSystemWrapper())
         {
         }
 
-        internal FileLoadModel(ITextEditorModel textEditorModel, IFileSystemWrapper fileSystemWrapper)
+        internal FileLoadModel(ITextEditorModel textEditorModel, IFilePathModel filePathModel,
+            IFileSystemWrapper fileSystemWrapper)
         {
             _textEditorModel = textEditorModel;
+            _filePathModel = filePathModel;
             _fileSystemWrapper = fileSystemWrapper;
+
+            _filePathModel.FileNameChanged += (sender, args) => Validate();
         }
 
         public bool IsValid
@@ -33,25 +37,15 @@ namespace MVP.Models
                 Validated?.Invoke(this, EventArgs.Empty);
             }
         }
-
-        public string FileName
-        {
-            get => _fileName;
-            set
-            {
-                _fileName = value;
-                Validate();
-            }
-        }
-
+        
         public void LoadFile()
         {
-            _textEditorModel.Text = _fileSystemWrapper.ReadTextFile(_fileName);
+            _textEditorModel.Text = _fileSystemWrapper.ReadTextFile(_filePathModel.FileName);
         }
 
         private void Validate()
         {
-            IsValid = _fileSystemWrapper.FileExists(_fileName);
+            IsValid = _fileSystemWrapper.FileExists(_filePathModel.FileName);
         }
     }
 }

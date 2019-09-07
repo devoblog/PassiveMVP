@@ -1,4 +1,6 @@
-﻿namespace MVP.Presenters
+﻿using System;
+
+namespace MVP.Presenters
 {
     public abstract class Presenter<TView, TModel>
     {
@@ -35,6 +37,20 @@
 
         protected virtual void UnhookModelEvents()
         {
+        }
+
+        protected void ViewAction(Action action)
+        {
+            UnhookViewEvents();
+            action.Invoke();
+            HookViewEvents();
+        }
+
+        protected void ModelAction(Action action)
+        {
+            UnhookModelEvents();
+            action.Invoke();
+            HookModelEvents();
         }
     }
 }

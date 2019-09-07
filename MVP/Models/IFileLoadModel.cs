@@ -7,7 +7,6 @@ namespace MVP.Models
         event EventHandler Validated;
 
         bool IsValid { get; }
-        string FileName { get; set; }
 
         void LoadFile();
     }
