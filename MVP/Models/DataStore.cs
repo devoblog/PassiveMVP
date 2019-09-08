@@ -7,12 +7,7 @@
         private string _text;
         private bool _fileNameIsValid;
         private bool _canSave;
-
-        public DataStore()
-            : this(new FileSystemWrapper())
-        {
-        }
-
+        
         public DataStore(IFileSystemWrapper fileSystemWrapper)
         {
             _fileSystemWrapper = fileSystemWrapper;

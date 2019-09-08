@@ -16,7 +16,7 @@ namespace PassiveMVP
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IDataStore dataStore = new DataStore();
+            IDataStore dataStore = new DataStore(new FileSystemWrapper());
             MainForm mainForm = new MainForm();
             new MainPresenter(mainForm, dataStore);
 

@@ -4,6 +4,7 @@
     <MetricsExclusionList>
       <Value>PassiveMVP\PassiveMVP.csproj</Value>
       <Value>UnitTests\UnitTests.csproj</Value>
+      <Value>Models\FileSystemWrapper.cs:MVP\MVP.csproj</Value>
     </MetricsExclusionList>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
