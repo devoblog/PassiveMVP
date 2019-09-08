@@ -16,6 +16,7 @@ namespace MVP.Presenters
             base.SetInitialState();
 
             _view.FileNameIsValid = _model.FileNameIsValid;
+            _view.CanSave = _model.CanSave;
         }
 
         protected override void HookViewEvents()
@@ -60,6 +61,7 @@ namespace MVP.Presenters
         private void ViewOnEditorTextChanged(object sender, EventArgs e)
         {
             ModelAction(() => _model.Text = _view.EditorText);
+            _view.CanSave = _model.CanSave;
         }
 
         private void ViewOnLoadRequested(object sender, EventArgs e)
@@ -81,6 +83,9 @@ namespace MVP.Presenters
                     break;
                 case "Text":
                     ViewAction(() => _view.EditorText = _model.Text);
+                    break;
+                case "CanSave":
+                    _view.CanSave = _model.CanSave;
                     break;
             }
         }

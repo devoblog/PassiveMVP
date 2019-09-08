@@ -45,7 +45,7 @@ namespace UnitTests
 
         [TestCase(true)]
         [TestCase(false)]
-        public void IsValidPassedToViewTest(bool isValid)
+        public void IsValidPassedToViewInitiallyTest(bool isValid)
         {
             _dataStore.FileNameIsValid.Returns(isValid);
             CreatePresenter();
@@ -53,6 +53,15 @@ namespace UnitTests
             _dataStore.PropertyChanged += Raise.Event<PropertyChangedEventHandler>(
                     _dataStore, new PropertyChangedEventArgs("FileNameIsValid"));
             _view.Received(1).FileNameIsValid = isValid;
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void CanSavePassedToViewInitiallyTest(bool canSave)
+        {
+            _dataStore.CanSave.Returns(canSave);
+            CreatePresenter();
+            _view.Received(1).CanSave = canSave;
         }
 
         [Test]
@@ -92,6 +101,45 @@ namespace UnitTests
             _dataStore.PropertyChanged += Raise.Event<PropertyChangedEventHandler>(
                 _dataStore, new PropertyChangedEventArgs("Text"));
             _view.Received(1).EditorText = text;
+        }
+
+        [Test]
+        public void CanSavePassedToView()
+        {
+            CreatePresenter();
+            _dataStore.CanSave.Returns(true);
+            _view.ClearReceivedCalls();
+            _dataStore.PropertyChanged += Raise.Event<PropertyChangedEventHandler>(
+                _dataStore, new PropertyChangedEventArgs("CanSave"));
+            _view.Received(1).CanSave = true;
+        }
+
+        [Test]
+        public void TextIsNotPassedBackToView()
+        {
+            CreatePresenter();
+            _view.ClearReceivedCalls();
+            _dataStore.When(x=>x.Text = Arg.Any<string>()).Do(x =>
+            {
+                _dataStore.PropertyChanged += Raise.Event<PropertyChangedEventHandler>(
+                    _dataStore, new PropertyChangedEventArgs("Text"));
+            });
+            _view.EditorTextChanged += Raise.EventWith(_view, EventArgs.Empty);
+            _view.Received(0).EditorText = Arg.Any<string>();
+        }
+
+        [Test]
+        public void CanSaveIsPassedToViewAfterTextChange()
+        {
+            CreatePresenter();
+            _view.ClearReceivedCalls();
+            _dataStore.When(x => x.Text = Arg.Any<string>()).Do(x =>
+            {
+                _dataStore.PropertyChanged += Raise.Event<PropertyChangedEventHandler>(
+                    _dataStore, new PropertyChangedEventArgs("Text"));
+            });
+            _view.EditorTextChanged += Raise.EventWith(_view, EventArgs.Empty);
+            _view.Received(1).CanSave = Arg.Any<bool>();
         }
     }
 }

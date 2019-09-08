@@ -13,5 +13,7 @@ namespace MVP.Views
         bool FileNameIsValid { set; }
         
         string EditorText { get; set; }
+
+        bool CanSave { set; }
     }
 }

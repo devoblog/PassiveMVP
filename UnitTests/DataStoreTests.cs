@@ -57,5 +57,28 @@ namespace UnitTests
             _dataStore.Save();
             _fileSystemWrapper.Received(1).SaveFile(fileName, text);
         }
+
+        [Test]
+        public void CanSaveTrueAfterTextEdited()
+        {
+            _dataStore.Text = "foo";
+            Assert.IsTrue(_dataStore.CanSave);
+        }
+
+        [Test]
+        public void CanSaveFalseAfterLoad()
+        {
+            _dataStore.Text = "foo";
+            _dataStore.Load();
+            Assert.IsFalse(_dataStore.CanSave);
+        }
+
+        [Test]
+        public void CanSaveFalseAfterSave()
+        {
+            _dataStore.Text = "foo";
+            _dataStore.Save();
+            Assert.IsFalse(_dataStore.CanSave);
+        }
     }
 }

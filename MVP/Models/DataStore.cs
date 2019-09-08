@@ -6,6 +6,7 @@
         private string _fileName;
         private string _text;
         private bool _fileNameIsValid;
+        private bool _canSave;
 
         public DataStore()
             : this(new FileSystemWrapper())
@@ -49,17 +50,30 @@
             {
                 _text = value;
                 OnPropertyChanged();
+                CanSave = true;
             }
         }
 
         public void Load()
         {
             Text = _fileSystemWrapper.ReadTextFile(FileName);
+            CanSave = false;
         }
 
         public void Save()
         {
             _fileSystemWrapper.SaveFile(FileName, Text);
+            CanSave = false;
+        }
+
+        public bool CanSave
+        {
+            get => _canSave;
+            set
+            {
+                _canSave = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

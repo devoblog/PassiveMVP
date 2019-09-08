@@ -11,5 +11,7 @@ namespace MVP.Models
 
         void Load();
         void Save();
+
+        bool CanSave { get; }
     }
 }

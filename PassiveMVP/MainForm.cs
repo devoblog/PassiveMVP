@@ -48,6 +48,11 @@ namespace PassiveMVP
             set => textBox.Text = value;
         }
 
+        public bool CanSave
+        {
+            set => saveButton.Enabled = value;
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveRequested?.Invoke(this, EventArgs.Empty);
